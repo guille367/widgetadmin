@@ -1,73 +1,17 @@
 <!DOCTYPE html>
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
     <title>Presupuesto de la Ciudad de Buenos Aires</title>
-    <meta name="description" content="Presupuesto de la Ciudad de Buenos Aires">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
     <script type="text/javascript" src="public/components/d3/d3.min.js"></script>
     <script type='text/javascript' src='public/components/jquery/dist/jquery.min.js'></script>
     <script type='text/javascript' src='js/CustomTooltip.js'></script>
 
     <link rel="stylesheet" href="css/base.min.css" />
-
-    <meta name="viewport" content="width=device-width">
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:domain" content="http://buenosaires.gob.ar">
-    <meta name="twitter:site" content="@LABgcba">
-    <meta name="twitter:creator" content="@LABgcba">
-    <meta name="twitter:image:src" content="http://i.imgur.com/srxz0wW.png">
-    <meta name="twitter:description" content="Explorá cómo se distribuye el presupuesto sancionado por la Legislatura de la Ciudad de Buenos Aires">
-    <meta name="twitter:title" content="¿A dónde van nuestros impuestos?">
-    <meta name="twitter:url" content="http://gcba.github.io/presupuesto-gcba/">
-
-    <meta property="og:title" content="¿A dónde van nuestros impuestos?" />
-    <meta property="og:site_name" content="Visualización del Presupuesto 2015" />
-    <meta property="og:description" content="Explorá cómo se distribuye el presupuesto sancionado por la Legislatura de la Ciudad de Buenos Aires" />
-    <meta property="og:image" content="http://i.imgur.com/oA7xlzX.png" />
-    <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="250" />
-    <meta property="og:image:height" content="250" />
-    <meta property="og:url" content="http://gcba.github.io/presupuesto-gcba/">
+    <meta charset="UTF-8"/>
 </head>
 
 
 <body>
-
-    <header class="navbar navbar-default navbar-static-top" id="top" role="navigation">
-        <div class="header-gcba">
-            <div class="header-inner">
-                <div class="container">
-                    <a href="http://buenosaires.gob.ar" target="_blank">
-                        <div class="logo"></div>
-                    </a>
-                    <h2 class="slogan">En todo estás vos</h2>
-                </div>
-            </div>
-        </div>
-        </div>
-    </header>
-
-    <div class="jumbotron">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 col-lg-12">
-                    <h1 id="my-tooltip">¿A dónde van nuestros impuestos?</h1>
-                    <h2>Explorá cómo se distribuye el presupuesto <span id="selectedYear">----</span> sancionado por la Legislatura de la Ciudad.</h2>
-                    <p class="lead">El presupuesto es una herramienta de planificación y ejecución económico-financiera que nos muestra de qué manera se asignan los recursos públicos. Para poder profundizar su entendimiento, existen diversos criterios de clasificación del mismo, uno de las cuales lo constituye el agrupamiento por finalidad y función, que conlleva examinar los gastos en base a la naturaleza de los servicios que prestan las instituciones públicas.
-                        <br>Recorré la visualización y conocé cómo es el presupuesto de nuestra Ciudad.</p>
-
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div id="cuerpo" class="container">
 
@@ -108,122 +52,15 @@
             </div>
         </div>
 
-        <div class="presupuestosAnteriores"> <!-- VER PRESUPUESTOS -->
-                <button id="a2014" onclick="veoPresupuesto(2014)" type="button" style="margin-top: 25px;" class="btn btn-default"> Ver el año 2014 </button>
-                <button id="a2015" onclick="veoPresupuesto(2015)" type="button" style="margin-top: 25px;" class="btn btn-default"> Ver el año 2015 </button>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12 col-lg-12">
-                <p class="mas-info">
-                    Para más información visitá el sitio del <a href="http://www.buenosaires.gob.ar/areas/hacienda/" target="_blank">Ministerio de Hacienda</a> o el catálogo de datos abiertos de la Ciudad, <a href="http://data.buenosaires.gob.ar/dataset/presupuesto-sancionado" target="_blank">Buenos Aires Data</a>. <br>
-                    <a href="http://www.buenosaires.gob.ar/transparencia" style="line-height:3em;">volver al sitio de transparencia</a>
-                </p>
-
-
-
-
-
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-1"></div>
-                            <div class="col-md-1"></div>
-                            <div class="col-md-1"></div>
-                            <div class="col-md-1"></div>
-                            <div class="col-md-1"></div>
-                            <div class="col-md-1">
-                                <a class="twitter-share-button" href="https://twitter.com/share" data-url="http://gcba.github.io/presupuesto-gcba/" data-via="labgcba" data-text="Explorá la distribución del presupuesto 2014 sancionado por la Legislatura de la Ciudad de Buenos Aires">Tweet</a>
-                                <script type="text/javascript">
-                                window.twttr = (function(d, s, id) {
-                                    var t, js, fjs = d.getElementsByTagName(s)[0];
-                                    if (d.getElementById(id)) {
-                                        return
-                                    }
-                                    js = d.createElement(s);
-                                    js.id = id;
-                                    js.src = "https://platform.twitter.com/widgets.js";
-                                    fjs.parentNode.insertBefore(js, fjs);
-                                    return window.twttr || (t = {
-                                        _e: [],
-                                        ready: function(f) {
-                                            t._e.push(f)
-                                        }
-                                    })
-                                }(document, "script", "twitter-wjs"));
-                                </script>
-                            </div>
-                            <div class="col-md-1">
-                                <div id="fb-root"></div>
-                                <script>(function(d, s, id) {
-                                  var js, fjs = d.getElementsByTagName(s)[0];
-                                  if (d.getElementById(id)) return;
-                                  js = d.createElement(s); js.id = id;
-                                  js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.0";
-                                  fjs.parentNode.insertBefore(js, fjs);
-                                }(document, 'script', 'facebook-jssdk'));</script>
-                                <div class="fb-like" data-href="http://gcba.github.io/presupuesto-gcba/" data-layout="button" data-action="recommend" data-show-faces="false" data-share="false"></div>
-                            </div>
-                            <div class="col-md-1"></div>
-                            <div class="col-md-1"></div>
-                            <div class="col-md-1"></div>
-                            <div class="col-md-1"></div>
-                            <div class="col-md-1"></div>
-
-                        </div>
-                    </div>
-
-                    <p class="definiciones">Definiciones:
-                        <br>
-                        <strong>Jurisdicción:</strong>Son las organizaciones públicas sin personalidad jurídica que representan a cada uno de los poderes establecidos por la Constitución de Ciudad Autónoma de Buenos Aires. El Art. 6º de la Ley Nº 70 establece como Jurisdicciones a las siguientes unidades institucionales: Legislatura, Justicia, Jefatura de Gobierno y los Ministerios del Poder Ejecutivo.
-                        <br>
-                        <strong>Finalidad:</strong>Es un criterio de clasificación del gasto según la naturaleza de los servicios que prestan las instituciones públicas a la comunidad. El nivel de cuentas de Finalidad se encuentra desagregado en Funciones.
-                        <br>
-                        <strong>Función:</strong>Es el nivel de cuentas dentro de la clasificación del gasto por Finalidad y Función que permite examinar en el tiempo las tendencias del gasto para las funciones generales del Gobierno. Su nivel de cuenta inmediato superior es la Finalidad.
-                    </p>
-            </div>
+   
         </div>
     </div>
+</div>
 
 
 
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 ministerio modernizacion">
-                    Ministerio de Modernización
-                </div>
-
-                <div class="col-md-4 ministerio labgcba">
-                    &nbsp;
-                </div>
-
-                <div class="col-md-4 ministerio hacienda">
-                    Ministerio de Hacienda
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script type="text/javascript" src="public/components/d3/d3.min.js"></script>
-    <script type='text/javascript' src='public/components/jquery/dist/jquery.min.js'></script>
-    <script type='text/javascript' src='js/CustomTooltip.js'></script>
-    <script type="text/javascript" src="js/presupuesto.min.js"></script>
-    <script>
-    (function(i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function() {
-            (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-        m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-    ga('create', 'UA-52502664-2', 'auto');
-    ga('send', 'pageview');
-    </script>
-
+<script type="text/javascript" src="js/presupuesto.js"></script>
+    
 </body>
 
 </html>

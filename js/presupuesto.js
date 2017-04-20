@@ -34,12 +34,12 @@ function presupuesto(archivo, vWidth,vFilas,pRango,vHeight){
 
     d3.csv(archivo, function(data) {
 
-        var jurisdiccion = [];
-        var jurisdiccionID = [];
-        var finalidad = [];
-        var finalidadID = [];
-        var totalesFinalidad = [];
-        var totalesJurisdiccion = [];
+        jurisdiccion = [];
+        jurisdiccionID = [];
+        finalidad = [];
+        finalidadID = [];
+        totalesFinalidad = [];
+        totalesJurisdiccion = [];
 
         data.forEach(function(d) {
 
@@ -596,4 +596,4 @@ function presupuesto(archivo, vWidth,vFilas,pRango,vHeight){
 
 }
 
-veoPresupuesto(2015);
+veoPresupuesto(2014);
