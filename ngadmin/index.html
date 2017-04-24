@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script type='text/javascript' src='./jquery.min.js'></script>
+    <script type='text/javascript' src='./CustomTooltip.js'></script>
+        <script src="./CustomTooltip.js"></script>
+        <script type="text/javascript" src="./d3.min.js"></script>  
+        <script src="./app.js"></script>
+        <script src="./controllers/controller.js"></script>
+        <script src="./services/service.js"></script>
+        <script src="./directives/directive.js"></script>
+    </head>
+    <body ng-app="ngApp" ng-controller="MyOwnCtrl">
+            <div class="row">
+                <div class="col-md-3">
+
+                </div>
+                <div class="col-md-9">
+                    <widget-admin></widget-admin>
+                </div>
+            </div>
+        </div>
+    </body>
+
+<style>
+
+   
+.tooltip {
+  position: absolute;
+  border: 1px solid #000;
+  background: #fff;
+  opacity: .9;
+  color: black;
+  padding: 20px;
+  width: 350px;
+  z-index: 41;
+  text-align: center;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px; }
+  .tooltip .title {
+    font-size: 13px; }
+  .tooltip .name {
+    font-weight: bold; }
+
+</style>
+
+</html>

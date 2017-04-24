@@ -2,7 +2,7 @@ var mocko = [{
     Id: 1,
     Rubro: 'Mesas',
     Cantidad: 10,
-    Descripcion: '',
+    Descripcion: 'sillas0',
 },{
     Id: 2,
     Rubro: 'Sillas',
@@ -53,6 +53,4 @@ var mocko = [{
     Rubro: 'Maquinarias y equipos',
     Cantidad: 3,
     Descripcion: 'Maquinarias3',
-}]
-
-module.exports = mocko;
+}];

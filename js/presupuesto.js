@@ -1,3 +1,4 @@
+a = [];
 function veoPresupuesto(year){
     var seleccion = year.toString();
     $("#presupuesto-visualizado").empty()
@@ -105,7 +106,6 @@ function presupuesto(archivo, vWidth,vFilas,pRango,vHeight){
                 x: width / 2,
                 y: height / 2
             };
-
             var centroides_finalidad = {};
             for (var i = 0; i < finalidad.length; i++) {
                 centroides_finalidad[parseInt(finalidad2d[i][2])] = {
@@ -116,6 +116,7 @@ function presupuesto(archivo, vWidth,vFilas,pRango,vHeight){
                 }
             }
 
+            a = centroides_finalidad;
             var columnas = 4;
             var filas = vFilas;
             var correccion = 250;
@@ -217,6 +218,7 @@ function presupuesto(archivo, vWidth,vFilas,pRango,vHeight){
                     });
 
                 circles.transition().duration(1500).attr("r", function(d) {
+                    console.log(d.radius);
                     return d.radius;
                 });
 
@@ -229,6 +231,7 @@ function presupuesto(archivo, vWidth,vFilas,pRango,vHeight){
             };
 
             function charge(d) {
+                console.log(d.value)
                 if (d.value < 0) {
                     return 0
                 } else {

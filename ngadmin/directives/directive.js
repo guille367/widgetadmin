@@ -1,8 +1,19 @@
+angular.module('ngApp')
+
+.directive('widgetAdmin',function(){
+    return{
+        link: function(scope,element,attrs){
+
+
+            load(dFalopa,6,8,["#ECD078", "#D95B43", "#C02942", "#542437", "#53777A", "#c1dd53"],300);
+        },
+        templateUrl: 'views/widget.html',
+    }
+});
+
 function load(data, vWidth,vFilas,pRango,vHeight){
 
-    var custom_bubble_chart, container, referencias;
-    container = $("#contenedor-visualizacion");
-    referencias = $(".referencias");
+    var custom_bubble_chart;    
 
     rubro = {
         Nombre: '',
@@ -46,7 +57,7 @@ function load(data, vWidth,vFilas,pRango,vHeight){
     custom_bubble_chart = (function(d3, CustomTooltip) {
         "use strict";
 
-        var width = 1200,
+        var width = 600,
             height = 600,
             tooltip = CustomTooltip("tooltip", 300),
             gravedad = -0.01,
@@ -54,11 +65,8 @@ function load(data, vWidth,vFilas,pRango,vHeight){
             damper = 0.45,
             nodes = [],
             radioMinimo = 50,
-            radioMaximo = 100,
-            vis, force, circles, radius_scale,
-            montosLiterales = function(n) {
-                return formatNumber(n * 1)
-            };
+            radioMaximo = 200,
+            vis, force, circles, radius_scale;
 
 
         var center = {
@@ -88,12 +96,14 @@ function load(data, vWidth,vFilas,pRango,vHeight){
                 radius_scale = d3.scale.linear().domain([0, max_amount]).range([radioMinimo, radioMaximo]);
             
             //REVISAR 
-            data.forEach(function(d) {
+            nodes = [];
+            Rubros.forEach(function(d) {
                 var node = {
                     Id: d.Id,
                     Rubro: d.Rubro,
                     radius: radius_scale(parseInt(d.Cantidad, 10)),
                     Cantidad: d.Cantidad,
+                    Items: d.Items,
                     x: Math.random() * width,
                     y: Math.random() * height,
                 };
@@ -107,6 +117,7 @@ function load(data, vWidth,vFilas,pRango,vHeight){
 
             vis = d3.select("#presupuesto-visualizado").append("svg")
                 .attr("width", width)
+                .attr("height", height);
 
             circles = vis.selectAll("circle")
                 .data(nodes)
@@ -124,6 +135,9 @@ function load(data, vWidth,vFilas,pRango,vHeight){
                 .attr("id", function(d) {
                     return "bubble_" + d.Id; // REVISAR
                 })
+                .on("click",function(d,i){
+                    console.log(d,i)
+                })
                 .on("mouseover", function(d, i) {
                     var el = d3.select(this)
                     el.style("stroke-width", 3)
@@ -134,11 +148,15 @@ function load(data, vWidth,vFilas,pRango,vHeight){
                     hide_details(d, i, this);
                     var el = d3.select(this)
                     el.style("stroke-width", 1.5)
-                   
+                        el.style("opacity", function (){
+                            if ($('#jurisdiccion').hasClass('disabled')){
+                                return 0.3;
+                            }
+                                return 0.9;
+                            });
                 });
 
             circles.transition().duration(1500).attr("r", function(d) {
-                console.log(d.radius);
                 return d.radius;
             });
 
@@ -151,6 +169,7 @@ function load(data, vWidth,vFilas,pRango,vHeight){
         };
 
         function charge(d) {
+            console.log(d.value)
             if (d.value < 0) {
                 return 0
             } else {
@@ -166,32 +185,10 @@ function load(data, vWidth,vFilas,pRango,vHeight){
 
         function show_details(data, i, element) {
             d3.select(element).attr("stroke", "black");
-            var content = "<span class=\"name\">Finalidad:</span><span class=\"value\"> " + data.Rubro + "</span><br/>";
+            var content = "<span>Finalidad:</span><span> " + "asdasdas" + "</span><br/>";
             content += "<span class=\"name\">Monto:</span><span class=\"value\"> $" + data.Cantidad + "</span>";
             tooltip.showTooltip(content, d3.event);
         }
-
-        function mostrarGrupoCompleto() {
-            // Inicio force
-            force.gravity(gravedad)
-                .charge(charge)
-                .friction(friction)
-                .on("tick", function(e) {
-                    circles.each(moverAlCentro(e.alpha))
-                        .attr("fill", function(d) {
-                            return fill_color(d.Rubro);
-                        })
-                        .attr("cx", function(d) {
-                            return d.x;
-                        })
-                        .attr("cy", function(d) {
-                            return d.y;
-                        })
-                        .style("opacity", 0.9);
-                });
-            force.start();
-        }
-
 
         function moverAlCentro(alpha) {
                 // Muevo objetos al centro
@@ -214,22 +211,31 @@ function load(data, vWidth,vFilas,pRango,vHeight){
             start();
         };
 
-        datosAdministrador.cambiarVista = function() {
-            mostrarGrupoCompleto();
-            container.delay(200).animate({
-                height: 600
-            }, 1000);
-            referencias.delay(300).animate({
-                opacity: 1
-            }, 350);
-        };
+        datosAdministrador.mostrar = function(){
+            force.gravity(gravedad)
+                .charge(charge)
+                .friction(friction)
+                .on("tick", function(e) {
+                    circles.each(moverAlCentro(e.alpha))
+                        .attr("fill", function(d) {
+                            return fill_color(d.Rubro);
+                        })
+                        .attr("cx", function(d) {
+                            return d.x;
+                        })
+                        .attr("cy", function(d) {
+                            return d.y;
+                        })
+                        .style("opacity", 0.9);
+                });
+            force.start();
+        }
 
         return datosAdministrador;
     })(d3, CustomTooltip);
 
     custom_bubble_chart.init(data);
-    custom_bubble_chart.cambiarVista();
-
+    custom_bubble_chart.mostrar();
 }
 
 var dFalopa = [{
